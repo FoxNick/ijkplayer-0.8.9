@@ -1,30 +1,26 @@
 # ijkplayer
 
-使用最新 IDE 编译了 B 站 ijkplayer，不做功能上的开发，仅为了让老用户能够在新设备上继续使用。
+<img src="https://img.shields.io/badge/Platform-%20iOS%20Android-blue.svg">
 
-## 特色：
+## 特色
 
-将依赖库编译成静态库，预编译出了 Android 平台的 ijkpalyer.aar 和 iOS 平台预编译的 IJKMediaFramework.xcframework。
-
-## 对比
-
-| 类别          | B 站 ijkplayer                       | debugly/ijkplayer          | 备注                               |
-| ----------- | ----------------------------------- | -------------------------- | -------------------------------- |
-| 安卓库         | ijkplayer.so,ijkffmpeg.so,ijksdl.so | ijkplayer.arr              | 从三个so缩减成一个arr，内部是一个 ijkpalyer.so |
-| iOS库        | -                                   | IJKMediaPlayer.xcframework | 通过 xcframework 分发                |
-| ABI         | armv5 armv7a arm64 x86 x86_64       | armv7a arm64 x86 x86_64    | 剔除 armv5 架构                      |
-| build-tools | ndk-build                           | cmake                      | 一套cmake支持所有ABI，无须每个 ABI 一个文件夹    |
-| NDK         | r10e                                | r27c                       | 使用最新最稳定的 NDK                     |
-| openssl     | 可选                                  | 默认包含                       | 升级到了最新 1.1.1w                    |
-| yuv         | 源码编译                                | 预编译成.a                     | 升级到了较新的stable分支                  |
-| soundtouch  | 源码编译                                | 预编译成.a                     | 升级到了最新 2.3.3                     |
-| soxr        | 支持                                  | 不支持                        | 音频重采样库，暂不编译了，有问题时可加上             |
-
-老旧项目一直在使用 B 站 ijkplayer 并且功能完全可以满足的情况下，可直接升级上来，好处是升级了编译工具链，能够正常在最新的安卓15 和 iOS18 上正常运行。
+- [x] 支持安卓15 和 iOS18
+- [x] 保留了原汁原味的 ijkpalyer，功能没有变化
+- [x] 预编译出了 Android 平台的 ijkpalyer.arr，取代之前的三个 so
+- [x] 预编译出了 iOS 平台的 IJKMediaFramework.xcframework
+- [x] ABI 支持：armv7a arm64 x86 x86_64
+- [x] NDK 使用最新最稳定的 r27c
+- [x] 将依赖的 ffmpeg、openssl 等所有三方库编译成静态库
+- [x] openssl 升级到了最新 1.1.1w
+- [x] soundtouch 升级到了 2.3.3，并且预编译成静态库
+- [x] yuv 升级到最稳定分支最新提交，并且预编译成静态库
+- [x] 使用 cmake 重新组织工程，抛弃之前的 ndk-build
+- [x] 合并 jni 调用，缩减了 so 的数量
+- [x] 使用全新的编译脚本
 
 ## 安装使用
 
-- ios
+- iOS
   
   ```
   pod "IJKMediaFramework", :podspec => 'https://github.com/debugly/ijkplayer/releases/download/k0.8.9/IJKMediaFramework.spec.json'
@@ -42,7 +38,7 @@
 
 原版 demo 可以正常运行：
 
-- ios
+- iOS
   
   ```
   git submodule update --init
@@ -64,8 +60,6 @@
 
 如果 ijkplayer 功能不能满足当前复杂的业务需求，则可以使用 ijkplayer 的升级版 [fsplayer](https://github.com/debugly/fsplayer) ，它提供了更加强劲的功能。
 
-## Donate
+## 定制功能
 
-维护本项目花费了大量时间和精力，特别是安卓项目，为了让本项目长存，你应该请作者喝杯咖啡，哈哈...
-
-![donate.jpg](https://i.postimg.cc/xdVqnBLp/IMG-7481.jpg)
+请邮件联系：[debugly@icloud.com](mailto:debugly@icloud.com)
